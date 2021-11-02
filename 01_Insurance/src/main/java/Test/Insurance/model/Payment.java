@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Table(name="PAYMENT_TBL")
 public class Payment {
@@ -19,14 +21,19 @@ public class Payment {
      @Id
      @GeneratedValue(strategy=GenerationType.IDENTITY)
 	 private int paymentId;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="ph_id")
-   // @Column(name="POLICY_HOLDER")
-     PolicyHolder policyHolder;
-    @ManyToOne(cascade=CascadeType.ALL)
+    
+    @Autowired
+    @ManyToOne
     @JoinColumn(name="planId")
    // @Column(name="POLICY_HOLDER")
-    Policyplan plan;
+    private  Policyplan plan;
+    
+    @Autowired
+    @ManyToOne
+    @JoinColumn(name="ph_id")
+   // @Column(name="POLICY_HOLDER")
+    private  PolicyHolder policyHolder;
+    
      @Column(name="PAYMENT_DATE")
     private  Date paymentDate;
      @Column(name="AMOUNT")
@@ -36,6 +43,12 @@ public class Payment {
      @Column(name="RECEIVER_ACCOUNT")
     private  long receiverAccountNo;
      
+     
+	public Payment() {
+		super();
+	}
+
+
 	public Payment(int paymentId,  Date paymentDate, double amount, long senderAccountNo,
 			long receiverAccountNo) {
 		super();
@@ -54,12 +67,27 @@ public class Payment {
 	public void setPaymentId(int paymentId) {
 		this.paymentId = paymentId;
 	}
-	/*public PolicyHolder getPolicyHolder() {
+	
+
+	public PolicyHolder getPolicyHolder() {
 		return policyHolder;
 	}
+
+
 	public void setPolicyHolder(PolicyHolder policyHolder) {
 		this.policyHolder = policyHolder;
-	}*/
+	}
+
+
+	public Policyplan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Policyplan plan) {
+		this.plan = plan;
+	}
+
+
 	public Date getPaymentDate() {
 		return paymentDate;
 	}
@@ -88,10 +116,19 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", paymentDate=" + paymentDate + ", amount=" + amount
-				+ ", senderAccountNo=" + senderAccountNo + ", receiverAccountNo=" + receiverAccountNo + "]";
+		return "Payment [paymentId=" + paymentId + ", plan=" + plan + ", policyHolder=" + policyHolder
+				+ ", paymentDate=" + paymentDate + ", amount=" + amount + ", senderAccountNo=" + senderAccountNo
+				+ ", receiverAccountNo=" + receiverAccountNo + "]";
 	}
 
+
+	
+
+
+	
+
+
+	
 
 	
      

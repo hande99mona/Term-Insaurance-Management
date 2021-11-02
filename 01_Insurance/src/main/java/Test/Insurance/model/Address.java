@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="ADDRESS_TBL")
@@ -22,7 +24,27 @@ public class Address {
 	@Column(name="ADDRESS_ZIPCODE")
 	private int zipcode;
 	
-//Constructor	
+	/*@OneToOne(mappedBy="address")
+	private User user;*/
+	
+	
+public int getAddress_Id() {
+		return address_Id;
+	}
+
+	public void setAddress_Id(int address_Id) {
+		this.address_Id = address_Id;
+	}
+/*
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}*/
+
+	//Constructor	
 	public Address(String city, String state, int zipcode) {
 		super();
 		this.city = city;
