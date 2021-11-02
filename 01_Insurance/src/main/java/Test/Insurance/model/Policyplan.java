@@ -1,11 +1,20 @@
 package Test.Insurance.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 @Table(name="POLICY_PLAN")
@@ -35,8 +44,19 @@ public class Policyplan {
 	@Column(name="PLAN_PERIOD")
 	 private int timePeriod;
 	
-	
-	
+	/*@OneToMany(mappedBy="policy",cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<PolicyHolder >policyplan= new ArrayList<>();
+
+
+
+	public List<PolicyHolder> getPolicyplan() {
+		return policyplan;
+	}
+
+	public void setPolicyplan(List<PolicyHolder> policyplan) {
+		this.policyplan = policyplan;
+	}*/
 
 	public Policyplan() {
 		super();
@@ -118,7 +138,6 @@ public class Policyplan {
 	public void setTimePeriod(int timePeriod) {
 		this.timePeriod = timePeriod;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -126,6 +145,10 @@ public class Policyplan {
 				+ ", planPremium=" + planPremium + ", lifeCover=" + lifeCover + ", paymetMode=" + paymetMode
 				+ ", age_coverage=" + age_coverage + ", timePeriod=" + timePeriod + "]";
 	}
+
+	
+
+	
 	 
 	 
 	 

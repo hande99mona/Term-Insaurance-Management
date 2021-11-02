@@ -26,7 +26,7 @@ public class User {
 	@Column(name="USER_GENDER")
 	 private Gender gender;
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name=" address_Id")
+	//@JoinColumn(name=" address_Id")
 	 Address address;
 	@Column(name="USER_EMAIL")
 	 private String email;
@@ -51,13 +51,13 @@ public class User {
 	}
 
 	public User(int id, String fullname, int mobile, Gender gender, String email, int age, Date dob,
-			double income, String occupation, String education, String username, String password) {
+			Address address,double income, String occupation, String education, String username, String password) {
 		super();
 		this.userId= id;
 		this.fullname = fullname;
 		this.mobile = mobile;
 		this.gender = gender;
-		//this.address = address;
+		this.address = address;
 		this.email = email;
 		this.age = age;
 		this.dob = dob;
@@ -100,13 +100,13 @@ public class User {
 		this.gender = gender;
 	}
 
-	/*public Address getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}*/
+	}
 
 	public String getEmail() {
 		return email;
@@ -175,9 +175,11 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", fullname=" + fullname + ", mobile=" + mobile + ", gender=" + gender
-				+ ", email=" + email + ", age=" + age + ", dob=" + dob + ", income=" + income + ", occupation="
-				+ occupation + ", education=" + education + ", username=" + username + ", password=" + password + "]";
+				+ ", address=" + address + ", email=" + email + ", age=" + age + ", dob=" + dob + ", income=" + income
+				+ ", occupation=" + occupation + ", education=" + education + ", username=" + username + ", password="
+				+ password + "]";
 	}
+
 	
 	
 

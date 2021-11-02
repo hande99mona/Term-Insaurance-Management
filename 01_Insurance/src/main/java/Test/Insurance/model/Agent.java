@@ -1,12 +1,17 @@
 package Test.Insurance.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,11 +38,8 @@ public class Agent {
 	 private String username;
 	@Column(name="AGENT_PASSWORD")
 	 private String password;
-	 
 	
-	
-	
-	public Agent() {
+public Agent() {
 		super();
 	}
 
@@ -55,6 +57,8 @@ public class Agent {
 		this.password = password;
 	}
 
+
+	
 
 	public int getAgentId() {
 		return agentId;
@@ -156,6 +160,8 @@ public class Agent {
 				+ ", agentCommission=" + agentCommission + ", username=" + username + ", password=" + password + "]";
 	}
 
+
+	
 
 
 	

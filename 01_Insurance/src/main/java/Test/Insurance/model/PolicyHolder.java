@@ -1,14 +1,16 @@
 package Test.Insurance.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Entity
 @Table(name="POLICY_HOLDER")
@@ -32,12 +34,13 @@ public class PolicyHolder {
 	@Column(name="PH_NOMINEE")
 	private String ph_Nominee;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	 @JoinColumn(name="planId")
+	@ManyToOne
+    @JoinColumn(name="policyplan")
 	private Policyplan policy;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	 @JoinColumn(name="agentId")
+	@Autowired
+	@ManyToOne
+    @JoinColumn(name="agents")
 	private Agent agent;
 
     private  ApplicationStatus applicationStatus=ApplicationStatus.PENDING;
@@ -67,6 +70,11 @@ public class PolicyHolder {
 		this.ph_Occupation = ph_Occupation;
 		this.ph_Email = ph_Email;
 		this.ph_Nominee = ph_Nominee;
+	}
+	
+
+	public PolicyHolder() {
+		super();
 	}
 
 	public int getPh_id() {

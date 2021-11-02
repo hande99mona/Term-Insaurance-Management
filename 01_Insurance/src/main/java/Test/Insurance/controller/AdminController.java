@@ -102,7 +102,7 @@ public void deleteAgent(@PathVariable("agentId")int id) {
 	
 }
 
-@DeleteMapping(path="{policyId}")
+@DeleteMapping(path="{plan}/{policyId}")
 public void deletePlan(@PathVariable("policyId")int id) {
 	adminServices.removePolicy(id);
 	
